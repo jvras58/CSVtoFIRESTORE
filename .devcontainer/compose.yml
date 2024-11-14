@@ -1,5 +1,5 @@
 services:
-  python_project:
+  dev-env:
     build:
       context: .
       dockerfile: Dockerfile

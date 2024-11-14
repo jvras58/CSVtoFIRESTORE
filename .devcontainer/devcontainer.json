@@ -1,8 +1,9 @@
 {
-    "name": "Dev Container - streamlit",
+    "name": "devenv",
     "dockerComposeFile": "compose.yml",
-    "service": "python_project",
+    "service": "dev-env",
     "workspaceFolder": "/workspace",
+    "remoteUser": "ubuntu",
     "customizations": {
       "vscode": {
         "extensions": [
