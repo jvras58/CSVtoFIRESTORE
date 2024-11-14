@@ -17,14 +17,14 @@ def show_page() -> None:
         st.image(
             load_image('logo-sheets.png'),
             caption='Logo-sheets',
-            use_column_width=True,
+            use_container_width=True,
         )
 
     with col2:
         st.image(
             load_image('logo-firebase.png'),
             caption='logo-firebase',
-            use_column_width=True,
+            use_container_width=True,
         )
 
     st.subheader(labels['home']['subtitulo'])
