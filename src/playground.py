@@ -14,7 +14,7 @@ from utils.load import load_image
 
 def show_page() -> None:
     """Mostra a página HOME e menu do dashboard."""
-    st.sidebar.image(load_image('logo-betinha.png'), use_container_width=True)
+    st.sidebar.image(load_image('logo_banca.png'), use_container_width=True)
 
     pages = {
         '🏠 Home': home_page,

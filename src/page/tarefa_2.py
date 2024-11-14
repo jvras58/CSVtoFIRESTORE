@@ -31,7 +31,7 @@ def upload_csv_to_firestore() -> None:
 def show_page() -> None:
     """Mostra a página Tarefa 1 com funcionalidade de upload para o Firestore."""
     
-    st.title(labels['tarefa_1']['titulo'])
-    st.write(labels['tarefa_1']['descricao'])
+    st.title(labels['tarefa_2']['titulo'])
+    st.write(labels['tarefa_2']['descricao'])
     
     upload_csv_to_firestore()
