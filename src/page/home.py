@@ -1,9 +1,11 @@
 """Tela Home Dashboard Interativo."""
 
 import streamlit as st
-from utils.load import load_toml,load_image
+
+from utils.load import load_image, load_toml
 
 labels = load_toml('ui_labels')
+
 
 def show_page() -> None:
     """Mostra a página Home do dashboard."""

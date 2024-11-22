@@ -2,15 +2,13 @@
 
 import streamlit as st
 
-# Page config
-st.set_page_config(page_title='Playground')
-
-from page import tarefa_3
 import page.config_json as config
 import page.home as home_page
-import page.tarefa_1 as tarefa_1
-import page.tarefa_2 as tarefa_2
+from page import tarefa_1, tarefa_2, tarefa_3
 from utils.load import load_image
+
+# Page config
+st.set_page_config(page_title='Playground')
 
 
 def show_page() -> None:

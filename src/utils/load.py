@@ -1,14 +1,15 @@
 """Funções utilitárias para carregar arquivos e integração com Firebase."""
 
+import json
 from pathlib import Path
 from typing import Any
+
+import firebase_admin
 import pandas as pd
-import json
 import streamlit as st
 import toml
-from PIL import Image
-import firebase_admin
 from firebase_admin import credentials, firestore
+from PIL import Image
 
 # Funções de carregamento de arquivos
 
@@ -45,7 +46,8 @@ def load_image(image_name: str) -> Image:
 
 
 def load_toml(toml_file: str) -> dict[Any, Any]:
-    """Carrega o arquivo toml de configuração do sistema de arquivos do usuário como um dicionário.
+    """Carrega o arquivo toml de configuração do sistema de arquivos do usuário
+    como um dicionário.
 
     Parameters
     ----------
@@ -81,7 +83,8 @@ def load_json(json_name: str) -> dict:
         Conjunto de dados carregado.
 
     """
-    with open(Path(get_project_root()) / f'src/data/{json_name}.json', 'r') as file:
+    json_path = Path(get_project_root()) / f'src/data/{json_name}.json'
+    with open(json_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 
@@ -108,7 +111,7 @@ def load_dataset(dataset_name: str) -> pd.DataFrame:
 
 # Funções para Firebase
 
-
+@st.cache_data
 def initialize_firebase(credential_path: str) -> firestore.Client:
     """Inicializa a conexão com o Firebase e retorna o cliente Firestore.
 
@@ -133,7 +136,7 @@ def initialize_firebase(credential_path: str) -> firestore.Client:
 
 
 def initialize_firebase_from_session() -> firestore.Client:
-    """Inicializa a conexão com o Firebase usando o conteúdo do arquivo JSON da sessão.
+    """Inicializa a conexão com o Firebase usando o conteúdo do arquivo JSON da
 
     Returns
     -------
@@ -149,11 +152,16 @@ def initialize_firebase_from_session() -> firestore.Client:
             firebase_admin.initialize_app(cred)
         return firestore.client()
     else:
-        st.error("Arquivo JSON de configuração não encontrado. Por favor, carregue o arquivo na tela de configuração.")
+        st.error(
+            "Arquivo JSON de configuração não encontrado. Por favor,"
+            "carregue o arquivo na tela de configuração."
+        )
         return None
 
 
-def send_data_to_firestore(db: firestore.Client, collection_name: str, data: dict) -> None:
+def send_data_to_firestore(
+    db: firestore.Client, collection_name: str, data: dict
+) -> None:
     """Envia um dicionário de dados para uma coleção específica no Firestore.
 
     Parameters
@@ -170,8 +178,6 @@ def send_data_to_firestore(db: firestore.Client, collection_name: str, data: dic
         db.collection(collection_name).add(data)
     except Exception as e:
         print(f"Erro ao enviar dados para o Firestore: {e}")
-
-
 
 
 @st.cache_data
