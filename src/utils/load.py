@@ -172,6 +172,8 @@ def send_data_to_firestore(db: firestore.Client, collection_name: str, data: dic
         print(f"Erro ao enviar dados para o Firestore: {e}")
 
 
+
+
 @st.cache_data
 def load_csv(csv_file) -> pd.DataFrame:
     """Carrega dados de um arquivo CSV enviado pelo usuário como um DataFrame.

@@ -13,3 +13,6 @@ descricao = "Nesta página, você pode selecionar um arquivo CSV para enviá-lo 
 titulo = "Envio Personalizado de CSV para Múltiplas Coleções"
 descricao = "Nesta página, você pode carregar um arquivo CSV, visualizar suas colunas e selecionar quais dados serão enviados para coleções específicas do Firestore, permitindo maior flexibilidade e controle sobre a distribuição dos dados."
 
+[tarefa_3]
+titulo = "Exportar Dados de uma Coleção Firestore para um Arquivo CSV"
+descricao = "Nesta página, você pode carregar a collections e exportar seus dados para um arquivo CSV, permitindo a análise e manipulação dos dados fora do Firestore."

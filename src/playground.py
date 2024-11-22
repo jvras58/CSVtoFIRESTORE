@@ -5,6 +5,7 @@ import streamlit as st
 # Page config
 st.set_page_config(page_title='Playground')
 
+from page import tarefa_3
 import page.config_json as config
 import page.home as home_page
 import page.tarefa_1 as tarefa_1
@@ -20,6 +21,7 @@ def show_page() -> None:
         '🏠 Home': home_page,
         '📄 Simple add Collections': tarefa_1,
         '📄 Complex add Collections': tarefa_2,
+        '📄 export csv to firestore': tarefa_3,
         '📄 Config Json conection firestore': config,
 
     }
