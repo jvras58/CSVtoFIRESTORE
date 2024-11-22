@@ -6,7 +6,7 @@ authors = ["Jvras <jonathas.vinicius@ufpe.br>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 streamlit = "^1.37.1"
 firebase-admin = "^6.6.0"
 
