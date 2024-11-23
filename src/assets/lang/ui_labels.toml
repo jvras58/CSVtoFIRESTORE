@@ -3,16 +3,20 @@ titulo = "Painel de Upload de CSV para Coleções Firestore"
 subtitulo = "Explore as Opções no Menu Lateral"
 introducao_painel = "Este painel permite o upload de arquivos CSV diretamente para coleções específicas no Firestore. Navegue pelo menu para escolher a aba que corresponde à tarefa desejada e explore as diferentes possibilidades de envio de dados."
 
-GitHub = "Acesse o Repositório no GitHub: https://github.com/jvras58/xxxxxx"
+GitHub = "Acesse o Repositório no GitHub: https://github.com/jvras58/csv-firestore"
 
 [tarefa_1]
 titulo = "Envio de Arquivo CSV para uma Coleção Firestore"
 descricao = "Nesta página, você pode selecionar um arquivo CSV para enviá-lo diretamente a uma coleção específica do Firestore, conforme definido no campo de entrada."
 
 [tarefa_2]
+titulo = "Envio Personalizado de CSV para uma Coleção Firestore"
+descricao = "Nesta página, você pode carregar um arquivo CSV, visualizar suas colunas e selecionar quais dados serão enviados para a coleção especifica Firestore, permitindo maior flexibilidade e controle sobre a distribuição dos dados."
+
+[tarefa_3]
 titulo = "Envio Personalizado de CSV para Múltiplas Coleções"
 descricao = "Nesta página, você pode carregar um arquivo CSV, visualizar suas colunas e selecionar quais dados serão enviados para coleções específicas do Firestore, permitindo maior flexibilidade e controle sobre a distribuição dos dados."
 
-[tarefa_3]
+[tarefa_4]
 titulo = "Exportar Dados de uma Coleção Firestore para um Arquivo CSV"
 descricao = "Nesta página, você pode carregar a collections e exportar seus dados para um arquivo CSV, permitindo a análise e manipulação dos dados fora do Firestore."

@@ -1,53 +1,80 @@
-"""Tela Tarefa 3: Exportação de Dados CSV do Firestore."""
+"""Tela Tarefa 3: Exportação de Dados CSV para multiplas collections."""
+
 
 import streamlit as st
 
-from utils.export_csv import export_firestore_data
-from utils.load import load_toml
+from utils.load import (
+    initialize_firebase_from_session,
+    load_csv,
+    load_toml,
+    send_data_to_firestore,
+)
 
 labels = load_toml('ui_labels')
 
 
-def export_firestore_csv() -> None:
-    """Função para exportar dados de uma coleção Firestore
-    para um arquivo CSV"""
+def upload_csv_to_firestore() -> None:
+    """Função para carregar e enviar dados de um arquivo CSV
+    para uma coleção Firestore"""
 
-    with st.form(key='export_form'):
-        collection_name = st.text_input(
-            "Digite o nome da coleção no Firestore:"
-        )
-        filters = []
-        field_name = st.text_input(
-            "Digite o nome do campo para filtrar (opcional):"
-        )
-        # TODO: Adicionar opção de filtro de outros operadores não funcionaria
-        # pois o firebase está somente com dados do tipo string
-        op_string = st.selectbox(
-            "Selecione o operador de filtro:",
-            ["==", "!="]
-        )
-        field_value = st.text_input(
-            "Digite o valor do campo para filtrar (opcional):"
-        )
-        if field_name and field_value:
-            filters.append((field_name, op_string, field_value))
+    uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
 
-        submit_button = st.form_submit_button(
-            label="Exportar Dados do Firestore"
-        )
+    field_mappings = {}
+    collection_mappings = {}
 
-    if submit_button:
-        if collection_name:
-            export_firestore_data(collection_name, filters)
-        else:
-            st.error("Por favor, insira o nome da coleção.")
+    if uploaded_file is not None:
+        data = load_csv(uploaded_file)
+        st.write("Pré-visualização dos dados:")
+        st.write(data.head())
+
+        columns = data.columns.tolist()
+        st.write(
+            "Mapeie as colunas do CSV para os campos e coleções do Firestore:"
+        )
+        for column in columns:
+            field = st.text_input(
+                f"Campo Firestore para a coluna '{column}':"
+            )
+            collection = st.text_input(
+                f"Coleção Firestore para a coluna '{column}':"
+            )
+            if field and collection:
+                field_mappings[column] = field
+                collection_mappings[column] = collection
+
+    if st.button("Enviar Dados para o Firestore"):
+        if (
+            uploaded_file is None
+            or not field_mappings
+            or not collection_mappings
+        ):
+            st.error(
+                "Por favor, selecione um arquivo CSV e mapeie as colunas "
+                "para os campos e coleções."
+            )
+            return
+
+        db = initialize_firebase_from_session()
+        if db is None:
+            return
+
+        for _, row in data.iterrows():
+            for col in columns:
+                if col in field_mappings and col in collection_mappings:
+                    document = {field_mappings[col]: row[col]}
+                    send_data_to_firestore(
+                        db, collection_mappings[col], document
+                    )
+        st.success(
+            "Dados enviados com sucesso para as coleções especificadas!"
+        )
 
 
 def show_page() -> None:
-    """Mostra a página Tarefa 3 com funcionalidade de exportação
-    para o Firestore."""
+    """Mostra a página Tarefa 3 com funcionalidade de upload para o
+    Firestore."""
 
     st.title(labels['tarefa_3']['titulo'])
     st.write(labels['tarefa_3']['descricao'])
 
-    export_firestore_csv()
+    upload_csv_to_firestore()
