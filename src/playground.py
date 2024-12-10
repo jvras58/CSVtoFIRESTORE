@@ -4,7 +4,7 @@ import streamlit as st
 
 import page.config_json as config
 import page.home as home_page
-from page import tarefa_1, tarefa_2, tarefa_3, tarefa_4
+from page import tarefa_1, tarefa_2, tarefa_3, tarefa_4, tarefa_5
 from utils.load import load_image
 
 # Page config
@@ -21,6 +21,7 @@ def show_page() -> None:
         '📄 Complex add Collections': tarefa_2,
         '📄 Complex add Collections 2': tarefa_3,
         '📄 export csv to firestore': tarefa_4,
+        '📄 export json to firestore': tarefa_5,
         '📄 Config Json conection firestore': config,
 
     }

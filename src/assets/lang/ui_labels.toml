@@ -20,3 +20,7 @@ descricao = "Nesta página, você pode carregar um arquivo CSV, visualizar suas 
 [tarefa_4]
 titulo = "Exportar Dados de uma Coleção Firestore para um Arquivo CSV"
 descricao = "Nesta página, você pode carregar a collections e exportar seus dados para um arquivo CSV, permitindo a análise e manipulação dos dados fora do Firestore."
+
+[tarefa_5]
+titulo = "importar Dados de um arquivo JSON para uma Coleção Firestore"
+descricao = "Nesta página, você pode selecionar um arquivo JSON para enviá-lo diretamente a uma coleção específica do Firestore, conforme definido no campo de entrada."
