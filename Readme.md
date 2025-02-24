@@ -1,7 +1,7 @@
 # Leitor de CSV
 
 ## 📖 Sobre o Projeto
-O projeto consiste em uma aplicação Web com Python para resolver um problema específico do Felipe. Mais informações [aqui](docs/CHECK.MD).
+O projeto consiste em uma aplicação Web com Python. Mais informações [aqui](docs/CHECK.MD).
 
 ## 🚀 Tecnologias e Ferramentas
 
